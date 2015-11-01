@@ -318,8 +318,8 @@ module FFI
     end
 
     callback :pcap_handler, [:pointer, PacketHeader, :pointer], :void
-    attach_function :pcap_loop, [:pcap_t, :int, :pcap_handler, :pointer], :int
-    attach_function :pcap_dispatch, [:pcap_t, :int, :pcap_handler, :pointer], :int
+    attach_function :pcap_loop, [:pcap_t, :int, :pcap_handler, :pointer], :int, :blocking => true
+    attach_function :pcap_dispatch, [:pcap_t, :int, :pcap_handler, :pointer], :int, :blocking => true
     attach_function :pcap_next, [:pcap_t, PacketHeader], :pointer
     attach_function :pcap_next_ex, [:pcap_t, :pointer, :pointer], :int
     attach_function :pcap_breakloop, [:pcap_t], :void
